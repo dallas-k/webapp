@@ -1,13 +1,13 @@
 <template>
     <div class="about">
         <commonTitle :sTitle="title" />
+        <div class='refresh'>
+            <p>마지막 새로고침 : {{getDay()}} <span class='refresh-icon' @click='refresh'><i class="fa fa-refresh" aria-hidden="true"></i></span></p>
+        </div>
         <div class='indicator' id="exchange">
             <h2>환율</h2>
-            <div class="economy-list">
-                <p><span class="title">미국 USD</span><span class="price">1,271.50원</span> <span class="change"><i class="fa fa-caret-up" aria-hidden="true"></i> 8.50</span></p>
-                <p><span class="title">일본 JPY(100엔)</span><span class="price">970.87원</span> <span class="change"><i class="fa fa-caret-down" aria-hidden="true"></i> 1.1</span></p>
-                <p><span class="title">유럽 EUR</span><span class="price">1,360.87원</span> <span class="change"><i class="fa fa-caret-down" aria-hidden="true"></i> 5.1</span></p>
-                <p><span class="title">중국 CNY</span><span class="price">183.87원</span> <span class="change"><i class="fa fa-caret-down" aria-hidden="true"></i> 2.1</span></p>
+            <div class="economy-list" v-for='ex in exchange' :key='ex.title'>
+                <p><span class="title">{{ex.title}}</span><span class="price">{{ex.value}}원</span> <span class="change"> {{ex.change}}</span> <span class='direction'>{{ex.direction}}</span></p>
             </div>
         </div>
         <div class='indicator' id="realty">
@@ -25,13 +25,37 @@ import commonTitle from '../components/common-title.vue'
 
 export default {
     name: 'EconomyView',
+    created() {
+        this.$http.get('/api/finance')
+            .then( (response) => {
+                this.exchange = response.data
+            }) .catch(err => {
+                alert(err);
+                console.log(err);
+            })
+        this.now = getDay();
+    },
     data() {
         return {
-            title: '주요 경제 지표'
+            title: '주요 경제 지표',
+            exchange : [],
+            now : ''
         }
     },
     components: {
         commonTitle
+    },
+    methods : {
+        getDay() {
+            let today = new Date();
+            let day = `${today.getFullYear()}/${today.getMonth()+1}/${today.getDate()}`;
+            let time =  `${today.getHours()}:${today.getMinutes()}:${today.getMinutes()}`;
+            return `${day} ${time}`;
+        },
+        refresh() {
+            this.getDay();
+            router.go(0);
+        }
     }
 }
 </script>
@@ -40,6 +64,19 @@ export default {
 h2 {
     padding-left:24px;
     font-size:24px;
+}
+.refresh p {
+    width:80%;
+    text-align:right;
+    font-size:12px;
+}
+.refresh-icon {
+    margin-left:2px;
+    font-size:inherit;
+    cursor:pointer;
+}
+.refresh-icon:hover {
+    color:var(--color-tomato);
 }
 .indicator {
     margin-top:24px;
@@ -56,7 +93,7 @@ h2 {
     border-top : 1px solid var(--color-dark);
 }
 .indicator .economy-list p:first-of-type{
-    margin-top:12px;
+    margin-top:8px;
 }
 .indicator .economy-list p .title {
     display:inline-block;
@@ -65,25 +102,35 @@ h2 {
 }
 .indicator .economy-list p .price {
     display:inline-block;
-    width:30%;
+    width:25%;
     padding-left:12px;
 }
 .indicator .economy-list p .change {
     display:inline-block;
-    width:30%;
+    width:20%;
+    padding-left:12px;
+}
+.indicator .economy-list p .direction {
+    display:inline-block;
+    width:20%;
     padding-left:12px;
 }
 
 @media screen and (max-width:573px){
+    .refresh p {
+        width:90%;
+        font-size:11px;
+    }
     .indicator .economy-list p {
         font-size:12px;
     }
     .indicator .economy-list p:first-of-type{
-        margin-top:8px;
+        margin-top:4px;
     }
-    .indicator .economy-list p .title {width:40%;}
-    .indicator .economy-list p .price {width:25%;}
-    .indicator .economy-list p .change {width:25%;}
+    .indicator .economy-list p .title {width:30%;}
+    .indicator .economy-list p .price {width:30%;}
+    .indicator .economy-list p .change {width:20%;}
+    .indicator .economy-list p .direction {width:20%;}
 }
 
 </style>

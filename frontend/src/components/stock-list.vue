@@ -19,15 +19,15 @@
             <span class="list6">정리</span>
         </div>
         <div class="stock-main">
-            <div class="stock-list">
+            <div class="stock-list" v-for='(data,idx) in stockList' :key="idx">
                 <div class="stock-list-meta list1">
-                    <span>{{data.date</span>
-                    <span>{{data.category</span>
+                    <span>{{data.date}}</span>
+                    <span>{{data.category}}</span>
                 </div>
-                <span class="list2">{{data.name</span>
-                <span class="list3">(data.price).toLocaleString('ko-KR')}}</span>
-                <span class="list4">data.count}}주</span>
-                <span class="list5">intOrFloat(data.currency, data.price, data.count)}}</span>
+                <span class="list2">{{data.name}}</span>
+                <span class="list3">{{(data.price).toLocaleString('ko-KR')}}</span>
+                <span class="list4">{{data.count}}주</span>
+                <span class="list5">{{intOrFloat(data.price, data.count)}}</span>
                 <span class="list6"><button @click="editStock(idx)">수정</button></span>
             </div>
         </div>
@@ -40,10 +40,18 @@
 import stockForm from './stock-addform.vue'
 
 export default {
+    created() {
+        this.$http.get('/api/stock')
+            .then( (response) => {
+                this.stockList = response.data
+            }) .catch(err => {
+                alert(err);
+                console.log(err);
+            })
+    },
     data(){
         return {
-            datas : stockList,
-            temp : stockList,
+            stockList : [],
             addForm : false
         }
     },
@@ -51,12 +59,11 @@ export default {
         stockForm
     },
     methods : {
-        intOrFloat(currency, price, count){
-            if(currency === "원"){
-                return (price * count).toLocaleString('ko-KR')
-            } else {
-                return (price * count).toFixed(2).toLowerCase("en-US")
-            }
+        intOrFloat(price, count){
+            var nPrice = Number(price);
+            var nCount = Number(count);
+            var sum = nPrice * nCount;
+            return sum.toLocaleString('ko-KR')
         },
         editStock(idx){
             alert(idx);

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import commonTitle from '@/components/common-title.vue'
+import commonTitle from '../components/common-title.vue'
 
 export default {
   name: 'PortfolioView',

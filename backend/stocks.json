@@ -1,0 +1,114 @@
+[
+  {
+      "date" : "2022/12/02",
+      "name" : "삼성전자",
+      "price" : 62000,
+      "count" : 5,
+      "category" : "국내주식"
+  },
+  {
+      "date" : "2022/12/03",
+      "name" : "TQQQ",
+      "price" : 32.24,
+      "count" : 5,
+      "category" : "해외주식"
+  },
+  {
+      "date" : "2022/12/04",
+      "name" : "Gold",
+      "price" : 17000,
+      "count" : 5,
+      "category" : "실물ETF"
+  },
+  {
+      "date" : "2022/12/05",
+      "name" : "타이거 부동산",
+      "price" : 4335,
+      "count" : 20,
+      "category" : "실물ETF"
+  },
+  {
+      "date" : "2022/12/12",
+      "name" : "국고채10년",
+      "price" : 30000,
+      "count" : 10,
+      "category" : "채권ETF"
+  },
+  {
+      "date" : "2022/12/22",
+      "name" : "SOXL",
+      "price" : 8.5,
+      "count" : 5,
+      "category" : "해외주식"
+  },
+  {
+      "date" : "2022/12/28",
+      "name" : "JPY",
+      "price" : 948.55,
+      "count" : 10000,
+      "category" : "외화"
+  },
+  {
+      "date" : "2022/12/28",
+      "name" : "JPY",
+      "price" : 948.55,
+      "count" : 10000,
+      "category" : "외화"
+  },
+  {
+      "date" : "2022/12/28",
+      "name" : "JPY",
+      "price" : 948.55,
+      "count" : 10000,
+      "category" : "외화"
+  },
+  {
+      "date" : "2022/12/28",
+      "name" : "JPY",
+      "price" : 948.55,
+      "count" : 10000,
+      "category" : "외화"
+  },
+  {
+      "date" : "2022/12/28",
+      "name" : "JPY",
+      "price" : 948.55,
+      "count" : 10000,
+      "category" : "외화"
+  },
+  {
+      "date" : "2022/12/28",
+      "name" : "JPY",
+      "price" : 948.55,
+      "count" : 10000,
+      "category" : "외화"
+  },
+  {
+      "date" : "2022/12/28",
+      "name" : "JPY",
+      "price" : 948.55,
+      "count" : 10000,
+      "category" : "외화"
+  },
+  {
+      "date" : "2022/12/28",
+      "name" : "JPY",
+      "price" : 948.55,
+      "count" : 10000,
+      "category" : "외화"
+  },
+  {
+      "date" : "2022/12/28",
+      "name" : "JPY",
+      "price" : 948.55,
+      "count" : 10000,
+      "category" : "외화"
+  },
+  {
+      "date" : "2022/12/28",
+      "name" : "JPY",
+      "price" : 948.55,
+      "count" : 10000,
+      "category" : "외화"
+  }
+]

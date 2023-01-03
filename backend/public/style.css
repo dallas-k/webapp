@@ -1,0 +1,31 @@
+:root {
+    --color-dark : #0A2647;
+    --color-white : #FAF8F1;
+    --color-tomato : #EB455F;
+    --color-grey : #DADADA;
+    --font-xlarge : 18px;
+    --font-large : 16px;
+    --font-medium : 14px;
+    --font-small : 12px;
+    --font-xsmall : 10px;
+  }
+
+html, body, h1, h2, p, div, section, span {margin:0; padding:0;}
+* {box-sizing: border-box;}
+button {border: none;}
+ul {list-style: none;}
+a {text-decoration: none;}
+html, body {height:100%; font-size:62.5%; background-color:var(--color-dark)}
+
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-dark);
+  color : var(--color-white);
+  height:100%;
+  max-width: 1200px;
+  min-height:650px;
+  margin:auto;
+  overflow: hidden;
+}
