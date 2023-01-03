@@ -234,6 +234,10 @@ export default {
         height:25px;
         padding:2px;
     }
+    .modal-body-title h2 {
+        vertical-align: auto;
+    }
+
 }
 
 @media screen and (max-width:573px){

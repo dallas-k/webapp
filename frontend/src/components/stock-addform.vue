@@ -1,7 +1,7 @@
 <template>
     <div class="modal" id='modalbg'>
         <div class="modal-body">
-            <form action='http://localhost:3000/crud/add_stock' method='post'>
+            <form method='post' @submit='addComplete'>
                 <div class="modal-body-title">
                     <legend>주식 추가</legend>
                     <i id='modalClose' class="fa fa-times" aria-hidden="true" @click="formClose"></i>
@@ -50,6 +50,14 @@ export default {
             let month = today.getMonth() + 1;
             let date = today.getDate();
             return `${year}-${month}-${date}`;
+        },
+        addComplete(){
+            this.$http.post('http://localhost:3000/crud/addStock')
+            .then(response=> {
+                console.log(response);
+            }, error => {
+                console.log(error);
+            }) 
         }
     },
 }

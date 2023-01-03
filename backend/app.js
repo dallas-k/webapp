@@ -11,7 +11,7 @@ var financeExchange = require('./routes/financeExchange.js');
 var financeOilGold = require('./routes/financeOilGold.js');
 var financeInterest = require('./routes/financeInterest.js');
 var stockList = require('./routes/stocks');
-var addStock = require('./routes/addStock')
+var addStock = require('./crud/addStock')
 
 var app = express();
 
@@ -32,7 +32,7 @@ app.use('/api/exchange', financeExchange);
 app.use('/api/oilGold', financeOilGold)
 app.use('/api/Interest', financeInterest)
 app.use('/api/stock', stockList);
-app.use('/crud/add_stock', addStock);
+app.use('/crud/addStock', addStock);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

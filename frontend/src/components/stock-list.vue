@@ -19,7 +19,7 @@
             <span class="list6">정리</span>
         </div>
         <div class="stock-main">
-            <div class="stock-list" v-for='(data,idx) in stockList' :key="idx">
+            <div class="stock-list" v-for='(data,idx) in temp' :key="idx">
                 <div class="stock-list-meta list1">
                     <span>{{data.date}}</span>
                     <span>{{data.category}}</span>
@@ -43,7 +43,8 @@ export default {
     created() {
         this.$http.get('/api/stock')
             .then( (response) => {
-                this.stockList = response.data
+                this.stockList = response.data;
+                this.temp = response.data;
             }) .catch(err => {
                 alert(err);
                 console.log(err);
@@ -52,7 +53,8 @@ export default {
     data(){
         return {
             stockList : [],
-            addForm : false
+            addForm : false,
+            temp : '',
         }
     },
     components : {
@@ -71,10 +73,11 @@ export default {
         stockSort(cat){
             this.temp = [];
             if(cat === ''){
-                this.temp = this.datas;
+                this.temp = this.stockList;
+                console.log(this.temp)
             } else {
-                for(let each in this.datas){
-                    let correct = this.datas[each];
+                for(let each in this.stockList){
+                    let correct = this.stockList[each];
                     if(cat === correct.category){
                         this.temp.push(correct);
                     }
