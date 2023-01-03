@@ -2,7 +2,7 @@
     <div class="about">
         <commonTitle :sTitle="title" />
         <div class='refresh'>
-            <p>마지막 새로고침 : {{getDay()}} <span class='refresh-icon' @click='refresh'><i class="fa fa-refresh" aria-hidden="true"></i></span></p>
+            <p>마지막 새로고침 : {{now}} <span class='refresh-icon'><i class="fa fa-refresh" aria-hidden="true"></i></span></p>
         </div>
         <div class='indicator' id="exchange">
             <h2>환율</h2>
@@ -12,10 +12,15 @@
         </div>
         <div class='indicator' id="realty">
             <h2>유가, 금시세</h2>
-
+            <div class="economy-list" v-for='ex in oilGold' :key='ex.title'>
+                <p><span class="title">{{ex.title}}</span><span class="price">{{ex.value}}원</span> <span class="change"> {{ex.change}}</span> <span class='direction'>{{ex.direction}}</span></p>
+            </div>
         </div>
         <div class='indicator' id="stock">
             <h2>주요 지수</h2>
+            <div class="economy-list" v-for='ex in Interest' :key='ex.title'>
+                <p><span class="title">{{ex.title}}</span><span class="price">{{ex.value}}원</span> <span class="change"> {{ex.change}}</span> <span class='direction'>{{ex.direction}}</span></p>
+            </div>
         </div>
     </div>
 </template>
@@ -26,20 +31,35 @@ import commonTitle from '../components/common-title.vue'
 export default {
     name: 'EconomyView',
     created() {
-        this.$http.get('/api/finance')
+        this.$http.get('/api/exchange')
             .then( (response) => {
                 this.exchange = response.data
             }) .catch(err => {
                 alert(err);
                 console.log(err);
             })
-        this.now = getDay();
+        this.$http.get('/api/oilGold')
+        .then( (response) => {
+            this.oilGold = response.data
+        }) .catch(err => {
+            alert(err);
+            console.log(err);
+        })
+        this.$http.get('/api/Interest')
+        .then( (response) => {
+            this.Interest = response.data
+        }) .catch(err => {
+            alert(err);
+            console.log(err);
+        })
     },
     data() {
         return {
             title: '주요 경제 지표',
             exchange : [],
-            now : ''
+            oilGold : [],
+            Interest : [],
+            now : this.getDay()
         }
     },
     components: {
@@ -52,10 +72,6 @@ export default {
             let time =  `${today.getHours()}:${today.getMinutes()}:${today.getMinutes()}`;
             return `${day} ${time}`;
         },
-        refresh() {
-            this.getDay();
-            router.go(0);
-        }
     }
 }
 </script>

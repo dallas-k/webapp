@@ -1,7 +1,7 @@
 <template>
     <div class="modal" id='modalbg'>
         <div class="modal-body">
-            <form @submit.prevent="submitForm">
+            <form action='http://localhost:3000/crud/add_stock' method='post'>
                 <div class="modal-body-title">
                     <legend>주식 추가</legend>
                     <i id='modalClose' class="fa fa-times" aria-hidden="true" @click="formClose"></i>
@@ -18,7 +18,7 @@
                             <option>채권</option>
                             <option>외화</option>
                         </select></div>
-                    <button>등록하기</button>
+                    <button type='submit'>등록하기</button>
                 </div>
             </form>
         </div>

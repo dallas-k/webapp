@@ -20,7 +20,7 @@ const getHtml = async (url) => {
 router.get('/', function(req, res, next) {
     getHtml(url)
         .then(html => {
-            let ulList = [];
+            var ulList = [];
             const content = iconv.decode(html.data, 'euc-kr');
             const $ = cheerio.load(content);
             const $bodyList = $("ul#exchangeList").children("li");
